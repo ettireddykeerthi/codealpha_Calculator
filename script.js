@@ -1,303 +1,80 @@
-const songs = [
+const display = document.getElementById("display");
 
-    {
-        title: "Dreams",
-        artist: "Benjamin Tissot",
-        src: "https://www.bensound.com/bensound-music/bensound-dreams.mp3"
-    },
+// Add value to display
+function appendValue(value) {
 
-    {
-        title: "Energy",
-        artist: "Benjamin Tissot",
-        src: "https://www.bensound.com/bensound-music/bensound-energy.mp3"
-    },
-
-    {
-        title: "Sunny",
-        artist: "Benjamin Tissot",
-        src: "https://www.bensound.com/bensound-music/bensound-sunny.mp3"
-    },
-
-    {
-        title: "Better Days",
-        artist: "Benjamin Tissot",
-        src: "https://www.bensound.com/bensound-music/bensound-betterdays.mp3"
-    }
-];
-
-const audio = document.getElementById("audio");
-
-const title = document.getElementById("song-title");
-
-const artist = document.getElementById("artist");
-
-const playButton = document.getElementById("play-btn");
-
-const progress = document.getElementById("progress");
-
-const volume = document.getElementById("volume");
-
-const currentTime = document.getElementById("current-time");
-
-const duration = document.getElementById("duration");
-
-const playlist = document.getElementById("playlist");
-
-const autoplay = document.getElementById("autoplay");
-
-let songIndex = 0;
-
-
-// Load first song
-loadSong(songIndex);
-
-
-// Load song
-function loadSong(index) {
-
-    const song = songs[index];
-
-    title.textContent = song.title;
-
-    artist.textContent = song.artist;
-
-    audio.src = song.src;
-
-    updatePlaylist();
-
-}
-
-
-// Play song
-function playSong() {
-
-    audio.play();
-
-    playButton.textContent = "⏸️";
-}
-
-
-// Pause song
-function pauseSong() {
-
-    audio.pause();
-
-    playButton.textContent = "▶️";
-}
-
-
-// Play / Pause
-function togglePlay() {
-
-    if (audio.paused) {
-
-        playSong();
-
+    if (display.value === "0") {
+        display.value = value;
     } else {
-
-        pauseSong();
-
+        display.value += value;
     }
 }
 
-
-// Next song
-function nextSong() {
-
-    songIndex++;
-
-    if (songIndex >= songs.length) {
-
-        songIndex = 0;
-
-    }
-
-    loadSong(songIndex);
-
-    playSong();
-
+// Clear display
+function clearDisplay() {
+    display.value = "0";
 }
 
+// Delete last character
+function deleteLast() {
 
-// Previous song
-function previousSong() {
-
-    songIndex--;
-
-    if (songIndex < 0) {
-
-        songIndex = songs.length - 1;
-
-    }
-
-    loadSong(songIndex);
-
-    playSong();
-
-}
-
-
-// Update progress
-audio.addEventListener("timeupdate", function() {
-
-    if (audio.duration) {
-
-        const percentage =
-            (audio.currentTime / audio.duration) * 100;
-
-        progress.value = percentage;
-
-        currentTime.textContent =
-            formatTime(audio.currentTime);
-
-    }
-
-});
-
-
-// When song loads
-audio.addEventListener("loadedmetadata", function() {
-
-    duration.textContent =
-        formatTime(audio.duration);
-
-});
-
-
-// Change song position
-progress.addEventListener("input", function() {
-
-    if (audio.duration) {
-
-        audio.currentTime =
-            (progress.value / 100) * audio.duration;
-
-    }
-
-});
-
-
-// Volume control
-volume.addEventListener("input", function() {
-
-    audio.volume = volume.value;
-
-});
-
-
-// Set initial volume
-audio.volume = volume.value;
-
-
-// Automatic next song
-audio.addEventListener("ended", function() {
-
-    if (autoplay.checked) {
-
-        nextSong();
-
+    if (display.value.length === 1) {
+        display.value = "0";
     } else {
-
-        playButton.textContent = "▶️";
-
+        display.value = display.value.slice(0, -1);
     }
-
-});
-
-
-// Format time
-function formatTime(time) {
-
-    if (isNaN(time)) {
-        return "0:00";
-    }
-
-    const minutes = Math.floor(time / 60);
-
-    const seconds =
-        Math.floor(time % 60)
-        .toString()
-        .padStart(2, "0");
-
-    return `${minutes}:${seconds}`;
 }
 
+// Calculate result
+function calculate() {
 
-// Create playlist
-function createPlaylist() {
+    try {
 
-    playlist.innerHTML = "";
+        let expression = display.value;
 
-    songs.forEach((song, index) => {
+        // Convert percentage
+        expression = expression.replace(/(\d+)%/g, "($1/100)");
 
-        const li = document.createElement("li");
+        let result = eval(expression);
 
-        li.textContent =
-            `${index + 1}. ${song.title} - ${song.artist}`;
-
-        li.addEventListener("click", function() {
-
-            songIndex = index;
-
-            loadSong(songIndex);
-
-            playSong();
-
-        });
-
-        playlist.appendChild(li);
-
-    });
-
-}
-
-
-// Update active playlist item
-function updatePlaylist() {
-
-    createPlaylist();
-
-    const items =
-        playlist.querySelectorAll("li");
-
-    items.forEach((item, index) => {
-
-        if (index === songIndex) {
-
-            item.classList.add("active");
-
+        if (!isFinite(result)) {
+            display.value = "Error";
         } else {
-
-            item.classList.remove("active");
-
+            display.value = result;
         }
 
-    });
-
+    } catch (error) {
+        display.value = "Error";
+    }
 }
 
-
-// Keyboard controls
+// Keyboard support
 document.addEventListener("keydown", function(event) {
 
-    if (event.code === "Space") {
+    const key = event.key;
 
-        event.preventDefault();
-
-        togglePlay();
-
+    if (
+        (key >= "0" && key <= "9") ||
+        key === "+" ||
+        key === "-" ||
+        key === "*" ||
+        key === "/" ||
+        key === "." ||
+        key === "%"
+    ) {
+        appendValue(key);
     }
 
-    if (event.code === "ArrowRight") {
-
-        nextSong();
-
+    else if (key === "Enter" || key === "=") {
+        calculate();
     }
 
-    if (event.code === "ArrowLeft") {
+    else if (key === "Backspace") {
+        deleteLast();
+    }
 
-        previousSong();
-
+    else if (key === "Escape") {
+        clearDisplay();
     }
 
 });
