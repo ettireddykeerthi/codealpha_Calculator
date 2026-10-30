@@ -2,108 +2,49 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Music Player</title>
+    <title>Calculator</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-    <div class="music-player">
+    <div class="calculator">
 
-        <h1>🎵 Music Player</h1>
+        <h1>Calculator</h1>
 
-        <!-- Album -->
-        <div class="album">
-            <div class="music-icon">🎶</div>
-        </div>
+        <input type="text" id="display" value="0" readonly>
 
-        <!-- Song Information -->
-        <div class="song-info">
+        <div class="buttons">
 
-            <h2 id="song-title">Song Title</h2>
+            <button class="clear" onclick="clearDisplay()">AC</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button onclick="appendValue('%')">%</button>
+            <button class="operator" onclick="appendValue('/')">÷</button>
 
-            <p id="artist">Artist</p>
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button class="operator" onclick="appendValue('*')">×</button>
 
-        </div>
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button class="operator" onclick="appendValue('-')">−</button>
 
-        <!-- Time -->
-        <div class="time">
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
 
-            <span id="current-time">0:00</span>
-
-            <span id="duration">0:00</span>
-
-        </div>
-
-        <!-- Progress Bar -->
-        <input
-            type="range"
-            id="progress"
-            value="0"
-            min="0"
-            max="100"
-        >
-
-        <!-- Controls -->
-        <div class="controls">
-
-            <button onclick="previousSong()">⏮️</button>
-
-            <button
-                id="play-btn"
-                class="play"
-                onclick="togglePlay()">
-                ▶️
-            </button>
-
-            <button onclick="nextSong()">⏭️</button>
+            <button onclick="appendValue('0')" class="zero">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
 
         </div>
-
-        <!-- Volume -->
-        <div class="volume">
-
-            <span>🔊</span>
-
-            <input
-                type="range"
-                id="volume"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.7"
-            >
-
-        </div>
-
-        <!-- Autoplay -->
-        <label class="autoplay">
-
-            <input
-                type="checkbox"
-                id="autoplay"
-                checked
-            >
-
-            Autoplay next song
-
-        </label>
-
-        <!-- Playlist -->
-        <h3>Playlist</h3>
-
-        <ul id="playlist"></ul>
-
-        <!-- Audio -->
-        <audio id="audio"></audio>
 
     </div>
 
