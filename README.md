@@ -1,39 +1,36 @@
-# 🎵 Task 4: Music Player Using JavaScript
+# 🧮 Task 2: Build a Calculator
 
 ## 📌 Description
 
-This project is an interactive **Music Player** created using **HTML, CSS, and JavaScript**.
+This project is a simple **Calculator** created using **HTML, CSS, and JavaScript**.
 
-The music player allows users to play songs, pause them, change songs, control volume, and view the song progress.
+The calculator performs basic arithmetic operations and provides an easy-to-use button-based interface.
 
 ## 🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
-- HTML5 Audio API
 
 ## ✨ Features
 
-- ▶️ Play music
-- ⏸️ Pause music
-- ⏮️ Previous song
-- ⏭️ Next song
-- 🎵 Display song title
-- 👤 Display artist name
-- ⏱️ Display current time
-- ⏱️ Display song duration
-- 📊 Progress bar
-- 🔊 Volume control
-- 📋 Playlist
-- 🔁 Autoplay next song
-- ⌨️ Keyboard controls
-- 📱 Responsive design
+- Addition (+)
+- Subtraction (-)
+- Multiplication (×)
+- Division (÷)
+- Percentage (%)
+- Decimal numbers
+- Clear button
+- Delete button
+- Real-time display
+- Keyboard support
+- Responsive design
+- User-friendly interface
 
 ## 📂 Project Structure
 
-```text id="k7q2px"
-Task-4-Music-Player/
+```text
+Task-2-Calculator/
 │
 ├── index.html
 ├── style.css
@@ -43,48 +40,30 @@ Task-4-Music-Player/
 
 ## ▶️ How to Run
 
-1. Open the `Task-4-Music-Player` folder.
+1. Open the `Task-2-Calculator` folder.
 2. Open the `index.html` file in a web browser.
-3. Select a song from the playlist.
-4. Click the **Play** button to start the music.
-5. Use the **Pause** button to stop the music.
-6. Use **Next** and **Previous** buttons to change songs.
-7. Use the progress bar to move to a different part of the song.
-8. Use the volume slider to control the volume.
-9. Enable or disable **Autoplay** as required.
+3. Enter numbers using the calculator buttons.
+4. Select an arithmetic operation.
+5. Press the `=` button to display the result.
+6. Use the `AC` button to clear the calculator.
 
 ## ⌨️ Keyboard Controls
 
 | Key | Function |
 |---|---|
-| `Space` | Play / Pause |
-| `←` | Previous Song |
-| `→` | Next Song |
-
-## 🎶 Playlist
-
-The music player contains multiple songs. Users can select any song from the playlist to play it.
-
-The currently playing song is highlighted in the playlist.
-
-## 🔊 Audio Controls
-
-The player provides:
-
-- Play/Pause control
-- Previous and Next controls
-- Progress/seek control
-- Volume control
-- Song duration
-- Current playback time
-
-## 🔁 Autoplay
-
-When **Autoplay** is enabled, the next song automatically starts after the current song finishes.
+| `0–9` | Enter numbers |
+| `+` | Addition |
+| `-` | Subtraction |
+| `*` | Multiplication |
+| `/` | Division |
+| `%` | Percentage |
+| `Enter` | Calculate result |
+| `Backspace` | Delete last character |
+| `Escape` | Clear display |
 
 ## 📱 Responsive Design
 
-The music player is designed to work on:
+The calculator is designed to work on:
 
 - Desktop computers
 - Laptops
@@ -93,19 +72,15 @@ The music player is designed to work on:
 
 ## 🎯 Objective
 
-The main objective of this task is to demonstrate the use of **JavaScript for controlling audio playback**, along with HTML for structure and CSS for designing a responsive music player interface.
+The main objective of this task is to demonstrate the use of **HTML for creating the calculator structure, CSS for designing the interface, and JavaScript for performing calculations and handling user interactions**.
 
 ## ✅ Task Requirements Completed
 
-- ✅ Music player interface using HTML and CSS
-- ✅ JavaScript audio control
-- ✅ Play and Pause
-- ✅ Next and Previous
-- ✅ Song title and artist
-- ✅ Song duration
-- ✅ Progress bar
-- ✅ Volume control
-- ✅ Playlist
-- ✅ Autoplay feature
+- ✅ Basic calculator using HTML, CSS, and JavaScript
+- ✅ Arithmetic operations
+- ✅ Buttons and display screen
+- ✅ User input handling
+- ✅ Clear and delete functions
+- ✅ Real-time result display
 - ✅ Keyboard support
-- ✅ Responsive design
+- ✅ Responsive styling
